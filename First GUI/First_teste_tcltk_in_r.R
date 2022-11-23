@@ -11,7 +11,7 @@ img1 <- tclVar()
 tclimg1 <- tkimage.create("photo", img1, file = "button.png")
 
 img2 <- tclVar()
-tclimg2 <- tkimage.create("photo", img2, file = "R.png")
+tclimg2 <- tkimage.create("photo", img2, file = "hearthicon.png")
 #######
 
 #CREATING THE TOP LEVEL OF THE GUI
