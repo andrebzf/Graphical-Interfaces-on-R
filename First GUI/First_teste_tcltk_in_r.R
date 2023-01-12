@@ -15,9 +15,9 @@ tclimg2 <- tkimage.create("photo", img2, file = "hearthicon.png")
 #######
 
 #CREATING THE TOP LEVEL OF THE GUI
-window <- tktoplevel(width = 300,height = 300, background = "gray")
+window <- tktoplevel(width = 800,height = 600, background = "gray")
 #SETTING THE TOP LEVEL TO UNJUSTABLE
-tkwm.resizable(window, FALSE, FALSE)
+
 #SETTING THE TITTLE OF THE WINDOW
 tkwm.title(window, "Button Hello User")
 #CHANGING THE ICON FROM THE GUI (TCL AND R FUNCTION)
@@ -38,6 +38,15 @@ entry_value <- tclVar("")
 entry <- ttkentry(frame, textvariable = entry_value)
 
 
+
+
+
+
+npeople <- matrix(ncol = 1, nrow = 100)
+
+count <- 1
+
+
 #CREATING A BUTTON TO INTERACT
 click <- tkbutton(frame, text = "CLICK", image = tclimg1, background = "gray" , command = function(){
     #A MESSAGE FOR THE USER IN THE MAIN WINDOWS
@@ -46,23 +55,44 @@ click <- tkbutton(frame, text = "CLICK", image = tclimg1, background = "gray" , 
     label3 <- tklabel(frame, text = msg, font = "Times 15 bold")
     #PACKING THE LABEL
     tkpack(label3, side = "bottom")
-    #CREATING A POPUP MESSAGE
-    tkmessageBox(message = "Beautiful Name! <3")
     #PRINTING IN CONSOLE
     print(msg)
+  
+    
+    npeople[count,] <<- tclvalue(entry_value)
+    
+    count <<- count + 1
+    
+    #CREATING A POPUP MESSAGE
+    tkmessageBox(message = "Beautiful Name! <3")
     #CLOSING THE MAIN WINDOW AFTER THE OK IN MESSAGE BOX
     tkdestroy(label3)
-    tclvalue(entry_value) <- ""
     
+    tclvalue(entry_value) <- ""
+  
   }
 )
 
+framebottom <- tkframe(window, background = "gray")
+
+click2 <- tkbutton(framebottom, text = "Lista de Nomes", background = "green" , height = 3, command = function(){
+  
+  View(npeople)
+  
+  }
+)
+
+
+
+
 ########ORDERNATING THE WIDGETS
 tkpack.propagate(window, FALSE)
-tkpack(frame, anchor = "center", expand = T)
+tkpack(frame, expand = T)
+tkpack(framebottom, side = "right")
 tkpack(label1)
 tkpack(label2)
 tkpack(entry)
 tkpack(click)
+tkpack(click2, side = "right")
 
 
