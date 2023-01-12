@@ -11,6 +11,7 @@ frame <- tkframe(window, background = "gray")
 frame2 <- tkframe(window, background  = "gray")
 
 frameb <- tkframe(window, background = "gray")
+frameb2 <- tkframe(window, background = "gray")
 
 title <- tklabel(frame, text = "Notas 2023.1", font = "Times 30 bold", foreground = "white", background = "gray")
 
@@ -47,6 +48,21 @@ entradanotai <- ttkentry(frame2, textvariable = notaivar)
 entradanotab <- ttkentry(frame2, textvariable = notaivar)
 
 
+notatable <- matrix(0,ncol = 9, nrow = 40)
+
+
+
+colnames(notatable) <- c("Nome", "Matematica", "Portugues", "Historia", "Geografia", "Filosofia", "Sociologia", "Biologia", "Ingles")
+
+notatable <- as.data.frame(notatable)
+
+
+write_xlsx(notatable,col_names = TRUE, path = "C:/Users/obarb/OneDrive/Documentos/CODES/Graphical-Interfaces-on-R/GUI NOTAS/test.xlsx")
+
+
+
+count <- 1
+
 click1 <- tkbutton(frameb, text = "Concluir", font = "Times 20 bold", background = "#32CD32", width = 10, height = 2, command = function(){
   
   
@@ -56,6 +72,14 @@ click1 <- tkbutton(frameb, text = "Concluir", font = "Times 20 bold", background
 })
 
 
+
+click2 <- tkbutton(frameb2, text = "Importar Dados", font = "Times 10 bold", background = "gray", width = 13, height = 2, command = function(){
+  
+  
+  
+  
+  
+})
 
 
 tkpack.propagate(window, FALSE)
@@ -92,6 +116,7 @@ tkpack(entradanotab, anchor = "se")
 tkpack(textoi,anchor ="w")
 tkpack(entradanotai, anchor = "se")
 
-tkpack(frameb, side = "bottom")
-
+tkpack(frameb, side = "left")
+tkpack(frameb2, side = "bottom")
+tkpack(click2, side ="left")
 tkpack(click1)
